@@ -6,6 +6,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+* <b>CSVManager</b><br><br>
+* This class is responsible to open and write specified csv files.
+* @author      Rogério de C. Brito <krcbrito@gmail.com>
+* @date 12/11/2020
+*/
 public class CSVManager {
 	
 	BufferedReader csvReader = null;
