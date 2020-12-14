@@ -56,7 +56,7 @@ public class CSVManager {
 			try {
 				if ((row = csvReader.readLine()) != null) {
 					    data = row.split(";");
-						System.out.println("GETLine String: "+data[0]+ " "+data[1]+" " + data[2] + " " +data[3].toString());
+						System.out.println("Read line: "+data[0]+ " "+data[1]+" " + data[2] + " " +data[3]);
 
 					}
 			} catch (IOException e) {
@@ -76,7 +76,6 @@ public class CSVManager {
 	* @return true if execution occurred successfully. Otherwise, false.
 	*/	
 	public boolean WriteLine(String[] s, String result) {
-		boolean ret=true;
 		
 		// verify if the output file is opened
 		if(outOK) {
@@ -89,17 +88,17 @@ public class CSVManager {
 				}
 				csvWriter.append(";"+result); // write new column
 				csvWriter.append("\r\n");
+				return true;
 				} catch (IOException e) {
 					System.out.println("An error occurred while writing data to the outputfile. ");
 					e.printStackTrace();
-					ret = false;
+					return false;
 				}
 		
 			}
 		else
 			return false;
 				
-		return ret;
 	}
 	
 	/**

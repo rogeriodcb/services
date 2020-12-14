@@ -7,11 +7,11 @@ import csv_manager.CSVManager;
 * Based in the original code SincronizacaoReceita.java from Sicredi.
 * <p>Modified by</p>
 * @author      Rogério de C. Brito <krcbrito@gmail.com>
+* @date 12/11/2020
 * 
+* TODO: to implement Framework batch
 */
 public class SincronizacaoReceita {
-	
-	
 	
 	/**
 	* Read CSV file and call "SyncWithService" method. 
@@ -65,8 +65,8 @@ public class SincronizacaoReceita {
 	* @param data (Array of String) - in this implementation the data contains:
 	* <ul>
 	* <li> <b>data[0]</b> (String) - agency name;
-	* <li> <b>data[1]</b> (String without "-") - account;
-	* <li> <b>data[2]</b> (cast to double) - balance;
+	* <li> <b>data[1]</b> (String) - account (this stirng removes the "-" character to match the ReceitaService format);
+	* <li> <b>data[2]</b> (String) - balance (cast to double to match the ReceitaService format);
 	* <li> <b>data[3]</b> (String) - status can be 'A', 'I', 'B' and 'P'.
 	* </ul>
 	* @return execution is successfully (true) otherwise (false).
@@ -76,7 +76,9 @@ public class SincronizacaoReceita {
 		
 		ReceitaService receitaService = new ReceitaService();
         try {
+        	
         	successStatus = receitaService.atualizarConta(data[0], data[1].replace("-",""),Double.parseDouble(data[2].replace(",", ".")),data[3]);
+
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 			successStatus = false;
